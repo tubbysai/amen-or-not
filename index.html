@@ -1,76 +1,2029 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Amen or Not</title>
-<style>
-:root{--mid:#081225;--mid2:#101b34;--gold:#d8ad4f;--gold2:#ffe08c;--paper:#f4ead6;--ink:#172033;--muted:#9dadc8;--green:#50c878;--amber:#f2b84b;--red:#d96363;--slate:#667085;--glass:rgba(255,255,255,.08);--line:rgba(216,173,79,.28);--shadow:0 24px 70px rgba(0,0,0,.42)}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#081225;color:#f8efd9;font-family:Georgia,'Times New Roman',serif}body{overflow-x:hidden;background:radial-gradient(circle at 50% -10%,rgba(216,173,79,.28),transparent 34rem),radial-gradient(circle at 12% 25%,rgba(67,96,153,.22),transparent 26rem),linear-gradient(135deg,#060c19,#0c1830 55%,#07101f)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(30deg,transparent 47%,rgba(216,173,79,.06) 48%,rgba(216,173,79,.06) 52%,transparent 53%),linear-gradient(150deg,transparent 47%,rgba(255,255,255,.035) 48%,rgba(255,255,255,.035) 52%,transparent 53%);background-size:140px 140px;mask-image:radial-gradient(circle at center,#000,transparent 78%)}button{font:inherit}.app{width:min(100%,760px);margin:0 auto;padding:clamp(14px,3vw,34px);min-height:100svh;display:flex;align-items:center}.shell{width:100%;position:relative}.panel{background:linear-gradient(180deg,rgba(16,27,52,.9),rgba(8,18,37,.92));border:1px solid var(--line);border-radius:32px;padding:clamp(18px,4vw,34px);box-shadow:var(--shadow);backdrop-filter:blur(18px);animation:rise .35s ease}.brand{text-align:center;margin-bottom:22px}.cross{color:var(--gold);font-size:32px;text-shadow:0 0 22px rgba(216,173,79,.55)}h1{font-size:clamp(42px,8vw,72px);line-height:.9;margin:8px 0;background:linear-gradient(#fff6dc,#c9932e);-webkit-background-clip:text;color:transparent;letter-spacing:-2px}h2{margin:0 0 12px;font-size:clamp(26px,5vw,40px)}p{color:#cbd5e1;line-height:1.55}.sub{font-size:clamp(16px,2.5vw,20px);margin:0;color:#d9c99d}.grid{display:grid;gap:12px}.menu{grid-template-columns:repeat(2,minmax(0,1fr))}.btn{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.035));color:#fff2d6;border-radius:18px;padding:15px 18px;cursor:pointer;min-height:58px;transition:.18s;box-shadow:inset 0 1px rgba(255,255,255,.12)}.btn:hover:not(:disabled){transform:translateY(-2px);border-color:rgba(255,224,140,.65);box-shadow:0 10px 30px rgba(0,0,0,.22),0 0 20px rgba(216,173,79,.12)}.btn:disabled{opacity:.48;cursor:not-allowed}.btn small{display:block;color:#b6c2d6;font-family:system-ui,sans-serif;font-size:12px;margin-top:4px}.primary{background:linear-gradient(135deg,#d7a94c,#7b551b);color:#121826;border-color:#f6d37e;font-weight:bold}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#e8d8ad;background:rgba(255,255,255,.06);font-family:system-ui,sans-serif;font-size:13px}.statsrow{display:flex;gap:8px;flex-wrap:wrap}.quote{background:linear-gradient(145deg,rgba(244,234,214,.98),rgba(224,202,160,.92));color:var(--ink);border-radius:28px;padding:clamp(24px,5vw,42px);text-align:center;box-shadow:inset 0 0 0 1px rgba(107,75,22,.16),0 16px 40px rgba(0,0,0,.25);position:relative;overflow:hidden}.quote:before{content:"";position:absolute;inset:12px;border:1px solid rgba(126,88,25,.18);border-radius:22px}.quoteText{position:relative;font-size:clamp(28px,6vw,48px);line-height:1.15}.hint{margin:14px 0;text-align:center;color:#ffe3a1;min-height:26px}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.choice{min-height:88px;border-radius:22px;font-weight:bold;letter-spacing:.7px}.choice span{display:block;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:0;color:#d9e2ef}.amen{border-color:rgba(80,200,120,.55)}.almost{border-color:rgba(242,184,75,.6)}.not{border-color:rgba(217,99,99,.55)}.correct{animation:pulse .75s ease;box-shadow:0 0 28px rgba(80,200,120,.45)!important;border-color:var(--green)!important}.wrong{animation:shake .36s ease;box-shadow:0 0 24px rgba(217,99,99,.4)!important;border-color:var(--red)!important}.reveal{margin-top:16px;border:1px solid var(--line);border-radius:24px;padding:18px;background:rgba(255,255,255,.07);animation:slide .25s ease}.answerTag{display:inline-block;color:#061122;background:var(--gold);border-radius:999px;padding:7px 12px;font-weight:bold}.actual{background:rgba(244,234,214,.1);border-left:3px solid var(--gold);padding:12px;border-radius:10px;color:#fff4d7}.dots{display:flex;gap:6px;justify-content:center;margin:14px 0}.dot{width:10px;height:10px;border-radius:50%;background:#33415e}.dot.good{background:var(--green)}.dot.bad{background:var(--red)}.dot.hintdot{background:var(--amber)}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(255,255,255,.06)}.bar{height:8px;background:#23304b;border-radius:9px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#fff0a7);border-radius:9px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;background:#fff2cf;color:#0b1428;border:1px solid #e9c66b;border-radius:999px;padding:12px 18px;box-shadow:var(--shadow);transition:.25s;z-index:20;font-weight:bold}.toast.show{opacity:1;transform:translateX(-50%)}.sparkle{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle,#ffe28a 0 2px,transparent 3px);background-size:45px 45px;animation:spark .8s ease forwards}.reviewItem{border-top:1px solid var(--line);padding:14px 0}.kbd{font-family:system-ui,sans-serif;color:#93a4c2;font-size:12px;text-align:center;margin-top:14px}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1}}@keyframes slide{from{opacity:0;transform:translateY(-8px)}to{opacity:1}}@keyframes pulse{50%{transform:scale(1.025)}}@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}@keyframes spark{to{opacity:0;transform:scale(1.08)}}@media(max-width:620px){.app{align-items:flex-start;padding:12px}.panel{border-radius:24px;padding:16px}.menu,.cards{grid-template-columns:1fr}.choices{grid-template-columns:1fr;position:sticky;bottom:8px;z-index:2}.choice{min-height:66px;display:flex;justify-content:space-between;align-items:center}.quoteText{font-size:30px}.top{align-items:flex-start;flex-direction:column}.btn:hover{transform:none}}
-</style>
-</head><body><main class="app"><div id="app" class="shell"></div></main><div id="toast" class="toast"></div>
-<script>
-/* Constants */
-const LEVELS={1:'Milk',2:'Bread',3:'Meat',4:'Discernment',5:'Berean'},ANS=['AMEN','ALMOST','NOT'],STORE='amenOrNot.v1';
-const REQ={2:10,3:30,4:60,5:100};
-/* Question bank */
-const seeds={
-1:[['God helps those who help themselves.','NOT','','','This is a cultural saying. 100% not a Bible verse.','Cultural Saying'],['Cleanliness is next to godliness.','NOT','','','This popular phrase is 100% not a Bible verse.','Cultural Saying'],['The truth will set you free.','AMEN','John 8:32','The truth will set you free.','Jesus speaks of truth and discipleship.','Words of Jesus'],['Iron sharpens iron.','AMEN','Proverbs 27:17','Iron sharpens iron, and one man sharpens another.','A recognizable proverb about mutual sharpening.','Proverbs'],['Love your neighbor as yourself.','AMEN','Mark 12:31','You shall love your neighbor as yourself.','Jesus names this as a great commandment.','Words of Jesus'],['A soft answer turns away wrath.','AMEN','Proverbs 15:1','A soft answer turns away wrath.','This is biblical wisdom from Proverbs.','Proverbs'],['The Lord is my shepherd.','AMEN','Psalm 23:1','The Lord is my shepherd; I shall not want.','A famous line from Psalm 23.','Psalms'],['Rejoice always.','AMEN','1 Thessalonians 5:16','Rejoice always.','A brief command from Paul.','Paul’s Letters'],['Pray without ceasing.','AMEN','1 Thessalonians 5:17','Pray without ceasing.','A short New Testament command.','Paul’s Letters'],['Money is the root of all evil.','ALMOST','1 Timothy 6:10','The love of money is a root of all kinds of evil.','Scripture warns about love of money, not money itself.','Misquote']],
-2:[['This too shall pass.','NOT','','','A wise saying, but 100% not a Bible verse.','Cultural Saying'],['Hate the sin, love the sinner.','NOT','','','Religious-sounding, but not a Bible verse.','Popular Phrase'],['Pride comes before the fall.','ALMOST','Proverbs 16:18','Pride goes before destruction, and a haughty spirit before a fall.','The common version compresses the wording.','Misquote'],['The lion shall lie down with the lamb.','ALMOST','Isaiah 11:6','The wolf shall dwell with the lamb.','The common wording changes the animals.','Misquote'],['God will never give you more than you can handle.','ALMOST','1 Corinthians 10:13','God provides a way of escape from temptation.','The verse is about temptation, not every hardship.','Misleading Paraphrase'],['Spare the rod, spoil the child.','ALMOST','Proverbs 13:24','Whoever spares the rod hates his son.','The familiar proverb is not the exact biblical wording.','Misquote'],['The truth shall set you free.','ALMOST','John 8:32','The truth will set you free.','One word is different from the recognizable wording.','Misquote'],['In the beginning God created the heavens and the earth.','AMEN','Genesis 1:1','In the beginning, God created the heavens and the earth.','The opening line of Genesis.','Torah'],['The wages of sin is death.','AMEN','Romans 6:23','For the wages of sin is death.','A recognizable line from Romans.','Paul’s Letters'],['The gift of God is eternal life.','AMEN','Romans 6:23','The free gift of God is eternal life in Christ Jesus our Lord.','This completes the contrast in Romans 6:23.','Paul’s Letters']],
-3:[['Follow your heart.','NOT','','','This is popular advice, but 100% not a Bible verse.','Cultural Saying'],['Charity begins at home.','NOT','','','A common proverb, not Scripture.','Cultural Saying'],['Do unto others as you would have them do unto you.','ALMOST','Matthew 7:12','Whatever you wish that others would do to you, do also to them.','The idea is biblical; the exact phrase is traditional wording.','Paraphrase'],['Eye for an eye, tooth for a tooth.','ALMOST','Exodus 21:24','Eye for eye, tooth for tooth.','It reflects biblical law but is often quoted incompletely.','Incomplete Quote'],['The love of money is the root of all evil.','ALMOST','1 Timothy 6:10','The love of money is a root of all kinds of evil.','It says a root of all kinds, not the root of all.','Misquote'],['Judge not.','ALMOST','Matthew 7:1','Judge not, that you be not judged.','The shortened form can miss the warning against hypocritical judgment.','Incomplete Quote'],['Faith without works is dead.','AMEN','James 2:26','Faith apart from works is dead.','A recognizable teaching from James.','General Epistles'],['We walk by faith, not by sight.','AMEN','2 Corinthians 5:7','We walk by faith, not by sight.','A direct line from Paul.','Paul’s Letters'],['The just shall live by faith.','AMEN','Romans 1:17','The righteous shall live by faith.','A central biblical phrase also echoed in Habakkuk.','Paul’s Letters'],['To obey is better than sacrifice.','AMEN','1 Samuel 15:22','To obey is better than sacrifice.','Samuel rebukes Saul with this line.','History']],
-4:[['Moderation in all things.','NOT','','','This ancient maxim is 100% not a Bible verse.','Cultural Saying'],['The Lord works in mysterious ways.','NOT','','','Religious-sounding, but not biblical wording.','Popular Phrase'],['When God closes a door, He opens a window.','NOT','','','A popular encouragement, 100% not a Bible verse.','Popular Phrase'],['God moves in mysterious ways.','NOT','','','From a hymn tradition, not a Bible verse.','Popular Phrase'],['Be still, and know that I am God.','AMEN','Psalm 46:10','Be still, and know that I am God.','A direct line from Psalm 46.','Psalms'],['I can do all things through Christ who strengthens me.','AMEN','Philippians 4:13','I can do all things through him who strengthens me.','Paul speaks of contentment through Christ.','Paul’s Letters'],['Be sure your sin will find you out.','AMEN','Numbers 32:23','Be sure your sin will find you out.','A warning from Numbers.','Torah'],['The race is not to the swift.','AMEN','Ecclesiastes 9:11','The race is not to the swift.','Ecclesiastes observes life’s unpredictability.','Wisdom'],['The borrower is slave to the lender.','AMEN','Proverbs 22:7','The borrower is the slave of the lender.','A proverb about debt and dependence.','Proverbs'],['All things work together for good.','ALMOST','Romans 8:28','For those who love God all things work together for good.','The common phrase often omits the qualifying context.','Incomplete Quote']],
-5:[['God needed another angel.','NOT','','','A comforting phrase some use, but 100% not a Bible verse.','Popular Phrase'],['Heaven gained an angel.','NOT','','','A sympathy phrase, not biblical teaching or a verse.','Popular Phrase'],['The eye is the window to the soul.','NOT','','','A common saying, not Scripture.','Cultural Saying'],['The patience of Job.','ALMOST','James 5:11','You have heard of the steadfastness of Job.','The idea is biblical, but the phrase is traditional wording.','Paraphrase'],['The spirit is willing but the flesh is weak.','AMEN','Matthew 26:41','The spirit indeed is willing, but the flesh is weak.','Jesus says this in Gethsemane.','Words of Jesus'],['Deep calls unto deep.','AMEN','Psalm 42:7','Deep calls to deep.','A poetic line from Psalm 42.','Psalms'],['Can two walk together, except they be agreed?','AMEN','Amos 3:3','Do two walk together, unless they have agreed to meet?','A recognizable prophetic question.','Prophets'],['Many are called, but few are chosen.','AMEN','Matthew 22:14','Many are called, but few are chosen.','A saying of Jesus.','Words of Jesus'],['God helps the weak who trust Him.','ALMOST','2 Corinthians 12:9','My grace is sufficient for you, for my power is made perfect in weakness.','The idea resembles Scripture but is not the wording.','Paraphrase'],['Where there is no vision, the people perish.','ALMOST','Proverbs 29:18','Where there is no prophetic vision the people cast off restraint.','Often used loosely; the verse concerns revelation and restraint.','Misquote']]
-};
-const phrases=['Blessed are the peacemakers.','The meek shall inherit the earth.','Man shall not live by bread alone.','Seek first the kingdom of God.','Do not be anxious about tomorrow.','The harvest is plentiful, but the laborers are few.','Let your light shine before others.','You are the salt of the earth.','Ask, and it will be given to you.','Knock, and it will be opened to you','The Lord loves a cheerful giver.','God is love.','Perfect love casts out fear.','Children, obey your parents in the Lord.','Put on the full armor of God.','Run with endurance the race set before us.','Encourage one another and build one another up.','Give thanks in all circumstances.','Test everything; hold fast what is good.','The fear of the Lord is the beginning of wisdom.','Trust in the Lord with all your heart.','A joyful heart is good medicine.','The name of the Lord is a strong tower.','Commit your work to the Lord.','Better is a little with righteousness.','A friend loves at all times.','There is a time for everything.','Two are better than one.','Cast your burden on the Lord.','Create in me a clean heart.'];
-const almost=['God wants you happy above all else.','Everything happens for a reason.','The safest place is the center of God’s will.','If you train up a child, they will never stray.','Ask anything and God must give it.','Touch not the Lord’s anointed.','Where two or three gather, God grants their request.','No weapon formed against me can ever hurt me.','By His stripes every illness is already gone.','Without a vision, people die.'];
-const nots=['The Bible says to forgive and forget.','Good things come to those who wait.','God won’t bless a mess.','Let go and let God.','Prayer changes things.','Once saved, always easy.','Be true to yourself.','God loves you just the way you are, so never change.','A penny saved is a penny earned.','Do your best and God will do the rest.'];
-let QUESTIONS=[];let id=1;function add(q,l){QUESTIONS.push({id:'q'+String(id++).padStart(3,'0'),phrase:q[0],answer:q[1],level:l,category:q[5]||'Bible Knowledge',reference:q[2],actual:q[3],explanation:q[4],sourceType:q[1]=='AMEN'?'Scripture':q[1]=='ALMOST'?'Misquote':'Not Scripture',hint:q[1]=='NOT'?'This is a cultural saying, not a verse.':q[1]=='ALMOST'?'This one is Scripture-adjacent, but wording matters.':'This is recognizable biblical wording.'})}
-for(let l=1;l<=5;l++){seeds[l].forEach(q=>add(q,l));for(let i=0;i<10;i++)add([phrases[(l-1)*5+i%phrases.length]||phrases[i],'AMEN','See Scripture','Recognizable biblical wording.','This is recognizable biblical language from Scripture.',['Words of Jesus','Psalms','Proverbs','Paul’s Letters','Wisdom'][i%5]],l);for(let i=0;i<5;i++)add([almost[(l*2+i)%almost.length],'ALMOST','Related biblical theme','The biblical wording is more specific than this phrase.','This is inspired by biblical ideas but changes or overstates the meaning.','Misleading Paraphrase'],l);for(let i=0;i<5;i++)add([nots[(l*2+i)%nots.length],'NOT','','','This is 100% not a Bible verse; it is a popular or religious-sounding saying.','Popular Phrase'],l)}
-/* State and storage */
-const $=s=>document.querySelector(s), app=$('#app');
-const fresh=()=>({totalGamesPlayed:0,totalQuestionsSeen:0,totalCorrect:0,totalWrong:0,bestStreak:0,highestEndlessScore:0,dailyStreak:0,bestDailyStreak:0,lastDailyDate:'',perfectRounds:0,levelUnlocked:1,totalScore:0,answeredQuestionIds:[],missedQuestionIds:[],categoryStats:{},modeStats:{},dailyHistory:{},unlockedModes:{mixed:false,almost:false},recentQuestionIds:[],playerSeed:getRandomSeed(),modeQueues:{}});
-let stats=load(), game=null;
-function load(){try{return Object.assign(fresh(),JSON.parse(localStorage.getItem(STORE)||'{}'))}catch{return fresh()}}function save(){localStorage.setItem(STORE,JSON.stringify(stats))}
-/* Seeded random / shuffle helpers */
-function getRandomSeed(){if(crypto&&crypto.getRandomValues){let a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]}return Math.floor(Math.random()*2**32)}
-function hash(s){let h=2166136261;for(let c of s)h=(h^c.charCodeAt(0))*16777619>>>0;return h}
-function rng(seed){let t=seed>>>0;return()=>{t+=0x6D2B79F5;let r=Math.imul(t^t>>>15,1|t);r^=r+Math.imul(r^r>>>7,61|r);return((r^r>>>14)>>>0)/4294967296}}
-function shuffle(a,seed){let r=seed===undefined?Math.random:rng(seed),x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(r()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
-function today(){return new Date().toLocaleDateString('en-CA')}
-/* Question selection */
-function eligible(mode,level){let q=QUESTIONS.filter(x=>!level||x.level==level);if(mode=='mixed')q=q.filter(x=>x.level<=stats.levelUnlocked);if(mode=='almost')q=q.filter(x=>x.answer=='ALMOST'&&x.level<=stats.levelUnlocked);return q}
-function queueKey(mode,level){return mode+(level?'-'+level:'')}
-function buildQueue(key,qs){let recent=new Set(stats.recentQuestionIds), pool=qs.filter(q=>!recent.has(q.id));if(pool.length<10)pool=qs;stats.modeQueues[key]=shuffle(pool.map(q=>q.id),hash(key+stats.playerSeed+Date.now()));save()}
-function nextQ(mode,level,used=new Set()){let qs=eligible(mode,level).filter(q=>!used.has(q.id)), key=queueKey(mode,level);if(!stats.modeQueues[key]||stats.modeQueues[key].length<3)buildQueue(key,qs);let idv, guard=0;do{idv=stats.modeQueues[key].shift();guard++}while(used.has(idv)&&guard<50);save();return QUESTIONS.find(q=>q.id==idv)||shuffle(qs)[0]}
-function dailySet(){return shuffle(QUESTIONS,hash(today())).slice(0,10)}
-function markSeen(q){stats.recentQuestionIds=[q.id,...stats.recentQuestionIds.filter(x=>x!=q.id)].slice(0,45)}
-/* Mode setup */
-function start(mode,level,practice=false){let len=mode=='mixed'?15:(mode=='endless'?Infinity:10), qs=[];if(mode=='daily')qs=dailySet(); else {let used=new Set();for(let i=0;i<(len==Infinity?1:len);i++){let lvl=mode=='endless'?1:level;let q=nextQ(mode,lvl,used);used.add(q.id);qs.push(q)}}game={mode,level:level||1,practice,len,qs,index:0,score:0,correct:0,wrong:0,streak:0,best:0,misses:0,results:[],missed:[],hinted:false,answered:false};renderQuestion()}
-function endlessLevel(){return Math.min(5,1+Math.floor(game.correct/5))}
-/* Rendering */
-function renderMenu(){unlockCheck(false);app.innerHTML=`<section class="panel"><div class="brand"><div class="cross">✦</div><h1>Amen or Not</h1><p class="sub">Is it Scripture, almost Scripture, or not Scripture?</p></div><div class="grid menu"><button class="btn primary" onclick="dailyStart()">Daily Discernment<small>10-question challenge</small></button><button class="btn" onclick="start('endless')">Endless Mode<small>Miss 3 and the run ends</small></button><button class="btn" onclick="levelMenu()">Level Run<small>Choose Milk through Berean</small></button><button class="btn" ${stats.levelUnlocked<3?'disabled':''} onclick="start('mixed')">${stats.levelUnlocked<3?'🔒 ':''}Mixed Challenge<small>Unlocks at Level 3</small></button><button class="btn" ${!canAlmost()?'disabled':''} onclick="start('almost')">${!canAlmost()?'🔒 ':''}Almost Only<small>Hard mode for misquotes</small></button><button class="btn" onclick="renderStats()">Stats<small>Your saved progress</small></button></div><p class="kbd">Keyboard: 1 Amen · 2 Almost · 3 Not · H Hint · Enter Next · Esc Menu</p></section>`}
-function dailyStart(){let d=today(), done=stats.dailyHistory[d]; if(done){toast('Daily already counted. Practice replay opened.'); start('daily',1,true)} else start('daily')}
-function levelMenu(){app.innerHTML=`<section class="panel"><h2>Choose a Level</h2><div class="grid">${[1,2,3,4,5].map(l=>`<button class="btn" ${stats.levelUnlocked<l?'disabled':''} onclick="start('level',${l})">${stats.levelUnlocked<l?'🔒 ':''}Level ${l}: ${LEVELS[l]}<small>${l==1?'Beginner':l==5?'Deep cuts':'10-question run'} ${REQ[l]?`· unlock at ${REQ[l]} correct`:''}</small></button>`).join('')}</div><button class="btn" onclick="renderMenu()">Back</button></section>`}
-function renderQuestion(){let q=game.mode=='endless'? (game.qs[game.index]||nextQ('endless',endlessLevel(),new Set(game.results.map(r=>r.id)))):game.qs[game.index];game.current=q;markSeen(q);save();let prog=game.len==Infinity?`Correct ${game.correct}`:`${game.index+1}/${game.len}`;app.innerHTML=`<section class="panel"><div class="top"><span class="pill">${nameMode()} · ${prog}</span><div class="statsrow"><span class="pill">Score ${game.score}</span><span class="pill">Streak ${game.streak}</span>${game.mode=='endless'?`<span class="pill">${'🕯️'.repeat(3-game.misses)}${'·'.repeat(game.misses)}</span>`:''}</div></div><div class="quote"><div class="quoteText">“${q.phrase}”</div></div><div class="hint" id="hint"></div><button class="btn" onclick="useHint()">Hint <small>H · removes no-hint bonus</small></button><div class="choices">${ANS.map((a,i)=>`<button class="btn choice ${a.toLowerCase()}" data-a="${a}" onclick="answer('${a}')">${i+1}. ${a}<span>${a=='AMEN'?"It’s Scripture":a=='ALMOST'?'Close, but off':'Not Scripture'}</span></button>`).join('')}</div>${dots()}<div id="reveal"></div></section>`}
-function dots(){if(game.len==Infinity)return '';return `<div class="dots">${Array.from({length:game.len},(_,i)=>`<i class="dot ${(game.results[i]?.hinted&&game.results[i]?.correct)?'hintdot':game.results[i]?.correct?'good':game.results[i]?'bad':''}"></i>`).join('')}</div>`}
-function nameMode(){return {daily:'Daily Discernment',endless:'Endless Mode',level:'Level '+game.level+': '+LEVELS[game.level],mixed:'Mixed Challenge',almost:'Almost Only'}[game.mode]}
-/* Answer handling and scoring */
-function useHint(){if(game.answered)return;game.hinted=true;$('#hint').textContent='✦ '+game.current.hint}
-function answer(a){if(game.answered)return;game.answered=true;let q=game.current, ok=a==q.answer, gain=0;if(ok){game.streak++;game.correct++;gain=100+(q.level-1)*25+game.streak*10+(game.hinted?0:25);game.score+=gain;game.best=Math.max(game.best,game.streak);if(game.streak&&game.streak%5==0)toast('Streak x'+game.streak)}else{game.streak=0;game.wrong++;game.misses++;game.missed.push({q,chosen:a})}game.results.push({id:q.id,correct:ok,hinted:game.hinted,chosen:a});document.querySelectorAll('.choice').forEach(b=>{b.disabled=true;if(b.dataset.a==q.answer)b.classList.add('correct');if(b.dataset.a==a&&!ok)b.classList.add('wrong')});$('#reveal').innerHTML=`<div class="reveal"><b>${ok?'Correct':'Not quite'}</b> <span class="answerTag">${q.answer}</span> ${q.reference?`<p><b>${q.reference}</b></p>`:'<p><b>100% not a Bible verse</b></p>'}${q.actual?`<div class="actual"><b>Actual wording:</b><br>“${q.actual}”</div>`:''}<p>${q.explanation}</p><p><b>Source type:</b> ${q.sourceType} · <b>+${gain}</b></p><button class="btn primary" onclick="next()">Next</button></div>`;pop('+'+gain);}
-function pop(t){let e=document.createElement('div');e.className='toast show';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),700)}
-function next(){game.index++;game.hinted=false;game.answered=false;if(game.mode=='endless'){if(game.misses>=3)return endGame();game.qs[game.index]=nextQ('endless',endlessLevel(),new Set(game.results.map(r=>r.id)));return renderQuestion()}if(game.index>=game.len)return endGame();renderQuestion()}
-/* Progression / stats */
-function endGame(){let counted=!(game.mode=='daily'&&game.practice);if(counted){stats.totalGamesPlayed++;stats.totalQuestionsSeen+=game.results.length;stats.totalCorrect+=game.correct;stats.totalWrong+=game.wrong;stats.bestStreak=Math.max(stats.bestStreak,game.best);stats.totalScore+=game.score;if(game.wrong==0)stats.perfectRounds++;if(game.mode=='endless')stats.highestEndlessScore=Math.max(stats.highestEndlessScore,game.score);for(let r of game.results){let q=QUESTIONS.find(x=>x.id==r.id);stats.answeredQuestionIds.push(q.id);if(!r.correct)stats.missedQuestionIds.push(q.id);let cs=stats.categoryStats[q.category]||(stats.categoryStats[q.category]={seen:0,correct:0});cs.seen++;if(r.correct)cs.correct++;}if(game.mode=='daily'){let d=today();stats.dailyHistory[d]={score:game.score,correct:game.correct,rank:rank()};let y=new Date();y.setDate(y.getDate()-1);let yd=y.toLocaleDateString('en-CA');stats.dailyStreak=stats.lastDailyDate==yd?stats.dailyStreak+1:1;stats.lastDailyDate=d;stats.bestDailyStreak=Math.max(stats.bestDailyStreak,stats.dailyStreak)}}unlockCheck(true);save();renderEnd()}
-function unlockCheck(show){let old=stats.levelUnlocked;while(stats.levelUnlocked<5&&stats.totalCorrect>=REQ[stats.levelUnlocked+1])stats.levelUnlocked++;stats.unlockedModes.mixed=stats.levelUnlocked>=3;let almostSeen=stats.answeredQuestionIds.map(id=>QUESTIONS.find(q=>q.id==id)).filter(q=>q&&q.answer=='ALMOST').length;stats.unlockedModes.almost=stats.levelUnlocked>=3||almostSeen>=25;if(show&&stats.levelUnlocked>old)toast('Level unlocked: '+LEVELS[stats.levelUnlocked])}
-function canAlmost(){return stats.unlockedModes.almost||stats.levelUnlocked>=3}
-function rank(){let a=game.correct/game.results.length,s=game.score;return ['Seeker','Student','Steady','Watchful','Rooted','Discernment','Berean','Overcomer'][Math.min(7,Math.floor(a*5)+Math.floor(s/1200))]}
-function renderEnd(){let acc=Math.round(100*game.correct/game.results.length), r=rank();if(game.wrong==0){let sp=document.createElement('div');sp.className='sparkle';document.body.appendChild(sp);setTimeout(()=>sp.remove(),900)}app.innerHTML=`<section class="panel"><h2>${nameMode()} Complete</h2><div class="cards"><div class="card"><b>Score</b><h2>${game.score.toLocaleString()}</h2></div><div class="card"><b>Rank</b><h2>${r}</h2></div><div class="card">Correct<br><b>${game.correct}/${game.results.length}</b></div><div class="card">Accuracy<br><b>${acc}%</b></div><div class="card">Best Streak<br><b>${game.best}</b></div><div class="card">Missed<br><b>${game.wrong}</b></div></div><p>“You checked what was said against the Word.”</p><div class="grid"><button class="btn primary" onclick="share()">Share Result</button>${game.missed.length?'<button class="btn" onclick="review()">Review Missed</button>':''}<button class="btn" onclick="start(game.mode,game.level,true)">Play Again</button><button class="btn" onclick="renderMenu()">Back to Menu</button></div></section>`}
-/* Stats / share / review */
-function renderStats(){let total=stats.totalQuestionsSeen||1, acc=Math.round(stats.totalCorrect/total*100), cats=Object.entries(stats.categoryStats), sorted=cats.sort((a,b)=>(b[1].correct/b[1].seen)-(a[1].correct/a[1].seen));app.innerHTML=`<section class="panel"><h2>Stats</h2><div class="cards">${[['Games played',stats.totalGamesPlayed],['Total questions',stats.totalQuestionsSeen],['Accuracy',acc+'%'],['Best streak',stats.bestStreak],['Daily streak',stats.dailyStreak],['Best daily',stats.bestDailyStreak],['Highest endless',stats.highestEndlessScore],['Perfect rounds',stats.perfectRounds],['Unlocked level',LEVELS[stats.levelUnlocked]],['Total score',stats.totalScore]].map(x=>`<div class="card"><small>${x[0]}</small><h2>${x[1]}</h2></div>`).join('')}</div><p><b>Strongest:</b> ${sorted[0]?.[0]||'—'} · <b>Weakest:</b> ${sorted.at(-1)?.[0]||'—'}</p><div class="bar"><i style="width:${acc}%"></i></div><br><button class="btn" onclick="renderMenu()">Back</button></section>`}
-function share(){let grid=game.results.map(r=>r.correct?(r.hinted?'🟨':'🟩'):'🟥').join('');let txt=game.mode=='endless'?`Amen or Not — Endless\nScore: ${game.score}\nCorrect: ${game.correct}\nBest Streak: ${game.best}\nRank: ${rank()}`:`Amen or Not ${game.mode=='daily'?'#'+Math.floor(hash(today())%1000):'— '+nameMode()}\nScore: ${game.correct}/${game.results.length}\nRank: ${rank()}\nStreak: ${game.best}\n${grid}\n\n🟩 correct · 🟥 wrong · 🟨 correct with hint`;if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>toast('Result copied')).catch(()=>fallback(txt));else fallback(txt)}
-function fallback(t){prompt('Copy your result:',t);toast('Result ready')}
-function review(){app.innerHTML=`<section class="panel"><h2>Review Missed</h2>${game.missed.map(m=>`<div class="reviewItem"><b>“${m.q.phrase}”</b><p>Your answer: ${m.chosen} · Correct: ${m.q.answer}</p>${m.q.reference?`<p><b>${m.q.reference}</b></p>`:''}${m.q.actual?`<div class="actual">“${m.q.actual}”</div>`:''}<p>${m.q.explanation}</p></div>`).join('')}<button class="btn" onclick="renderEnd()">Back</button></section>`}
-function toast(t){let el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
-window.addEventListener('keydown',e=>{if(!game&&e.key=='Escape')return;if(e.key=='Escape')renderMenu();if(!game)return;if(['1','2','3'].includes(e.key))answer(ANS[+e.key-1]);if(e.key.toLowerCase()=='h')useHint();if(e.key=='Enter'&&game.answered)next()});
-renderMenu();
-</script></body></html>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Amen or Not</title>
+  <style>
+    :root {
+      --midnight:#071124; --midnight-2:#101d38; --gold:#d9ad50; --gold-soft:#ffe4a3;
+      --parchment:#f4ead5; --ink:#152033; --muted:#a9b8d2; --line:rgba(217,173,80,.28);
+      --green:#54c981; --amber:#eab34e; --red:#d96363; --shadow:0 28px 80px rgba(0,0,0,.42);
+    }
+    * { box-sizing:border-box; }
+    html, body { margin:0; min-height:100%; color:#fff3d5; font-family:Georgia,'Times New Roman',serif; background:#071124; }
+    body { overflow-x:hidden; background:
+      radial-gradient(circle at 50% -8%, rgba(217,173,80,.32), transparent 34rem),
+      radial-gradient(circle at 12% 20%, rgba(80,120,190,.20), transparent 26rem),
+      linear-gradient(135deg,#050b17,#0c1830 58%,#071124); }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.9;
+      background-image:linear-gradient(30deg,transparent 47%,rgba(217,173,80,.055) 48%,rgba(217,173,80,.055) 52%,transparent 53%),linear-gradient(150deg,transparent 47%,rgba(255,255,255,.035) 48%,rgba(255,255,255,.035) 52%,transparent 53%);
+      background-size:150px 150px; mask-image:radial-gradient(circle at center,#000,transparent 80%); }
+    button { font:inherit; }
+    .app { width:min(100%,780px); min-height:100svh; margin:auto; padding:clamp(14px,3vw,34px); display:flex; align-items:center; }
+    .shell { width:100%; }
+    .panel { position:relative; background:linear-gradient(180deg,rgba(16,29,56,.92),rgba(7,17,36,.95)); border:1px solid var(--line); border-radius:32px; padding:clamp(18px,4vw,36px); box-shadow:var(--shadow); backdrop-filter:blur(18px); animation:rise .34s ease; }
+    .brand { text-align:center; margin-bottom:24px; }
+    .cross { color:var(--gold); font-size:34px; text-shadow:0 0 26px rgba(217,173,80,.7); }
+    h1 { margin:8px 0 6px; font-size:clamp(44px,8vw,76px); line-height:.9; letter-spacing:-2px; background:linear-gradient(#fff8df,#c8912f); -webkit-background-clip:text; color:transparent; }
+    h2 { margin:0 0 14px; font-size:clamp(27px,5vw,42px); }
+    h3 { margin:0 0 10px; }
+    p { color:#cbd6e8; line-height:1.55; }
+    .sub { color:#dccb9f; font-size:clamp(16px,2.5vw,20px); margin:0; }
+    .grid { display:grid; gap:12px; }
+    .menu { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .btn { min-height:58px; border:1px solid var(--line); border-radius:18px; padding:14px 18px; cursor:pointer; color:#fff3d5; background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.035)); box-shadow:inset 0 1px rgba(255,255,255,.12); transition:transform .18s,border-color .18s,box-shadow .18s,opacity .18s; }
+    .btn:hover:not(:disabled) { transform:translateY(-2px); border-color:rgba(255,228,163,.68); box-shadow:0 12px 30px rgba(0,0,0,.22),0 0 24px rgba(217,173,80,.13); }
+    .btn:disabled { opacity:.47; cursor:not-allowed; }
+    .btn small { display:block; margin-top:4px; color:#b8c5db; font:600 12px/1.25 system-ui,sans-serif; }
+    .primary { background:linear-gradient(135deg,#f0c568,#8a611f); color:#10192c; border-color:#ffe4a3; font-weight:800; }
+    .top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:14px; }
+    .statsrow { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:#eadab0; background:rgba(255,255,255,.06); font:700 13px/1 system-ui,sans-serif; }
+    .quote { position:relative; overflow:hidden; border-radius:28px; padding:clamp(25px,5vw,44px); text-align:center; color:var(--ink); background:linear-gradient(145deg,rgba(246,238,220,.98),rgba(222,199,158,.94)); box-shadow:inset 0 0 0 1px rgba(107,75,22,.16),0 18px 44px rgba(0,0,0,.27); }
+    .quote::before { content:""; position:absolute; inset:12px; border:1px solid rgba(126,88,25,.18); border-radius:22px; }
+    .quoteText { position:relative; font-size:clamp(28px,6vw,49px); line-height:1.14; }
+    .hint { min-height:28px; margin:14px 0; text-align:center; color:#ffe5a6; }
+    .choices { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+    .choice { min-height:88px; border-radius:22px; font-weight:900; letter-spacing:.8px; }
+    .choice span { display:block; color:#dce5f2; font:700 13px/1.3 system-ui,sans-serif; letter-spacing:0; }
+    .amen { border-color:rgba(84,201,129,.58); } .almost { border-color:rgba(234,179,78,.65); } .not { border-color:rgba(217,99,99,.6); }
+    .correct { animation:pulse .7s ease; border-color:var(--green)!important; box-shadow:0 0 30px rgba(84,201,129,.46)!important; }
+    .wrong { animation:shake .35s ease; border-color:var(--red)!important; box-shadow:0 0 25px rgba(217,99,99,.42)!important; }
+    .reveal { margin-top:16px; padding:18px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,.075); animation:slide .24s ease; }
+    .answerTag { display:inline-block; margin-left:8px; padding:7px 12px; border-radius:999px; background:var(--gold); color:#071124; font-weight:900; }
+    .actual { margin:10px 0; padding:12px; border-left:3px solid var(--gold); border-radius:10px; background:rgba(244,234,213,.10); color:#fff4d8; }
+    .dots { display:flex; gap:6px; justify-content:center; margin:15px 0; flex-wrap:wrap; }
+    .dot { width:10px; height:10px; border-radius:50%; background:#33415e; } .dot.good{background:var(--green)} .dot.bad{background:var(--red)} .dot.hinted{background:var(--amber)}
+    .cards { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .card { border:1px solid var(--line); border-radius:20px; padding:16px; background:rgba(255,255,255,.065); }
+    .card small { color:#b8c5db; font:700 12px system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; }
+    .bar { height:9px; border-radius:999px; background:#24314b; overflow:hidden; } .bar i { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold),#fff1a8); transition:width .5s ease; }
+    .reviewItem { border-top:1px solid var(--line); padding:14px 0; }
+    .kbd { text-align:center; color:#98a9c7; font:700 12px system-ui,sans-serif; margin-top:14px; }
+    .quitBtn { min-height:40px; padding:8px 12px; border-radius:999px; font:800 12px system-ui,sans-serif; }
+    .toast { position:fixed; left:50%; bottom:22px; z-index:30; transform:translateX(-50%) translateY(20px); opacity:0; padding:12px 18px; border-radius:999px; border:1px solid #e9c66b; background:#fff2cf; color:#0b1428; box-shadow:var(--shadow); font-weight:900; transition:.24s; }
+    .toast.show { opacity:1; transform:translateX(-50%); }
+    .sparkle { position:fixed; inset:0; pointer-events:none; background:radial-gradient(circle,#ffe28a 0 2px,transparent 3px); background-size:45px 45px; animation:spark .85s ease forwards; }
+    @keyframes rise { from{opacity:0; transform:translateY(12px)} } @keyframes slide { from{opacity:0; transform:translateY(-8px)} } @keyframes pulse { 50%{transform:scale(1.025)} } @keyframes shake { 25%{transform:translateX(-6px)} 50%{transform:translateX(5px)} 75%{transform:translateX(-3px)} } @keyframes spark { to{opacity:0; transform:scale(1.08)} }
+    @media (max-width:620px) { .app{align-items:flex-start;padding:8px;min-height:100svh} .panel{border-radius:22px;padding:12px;min-height:calc(100svh - 16px)} .brand{margin-bottom:14px} h1{font-size:40px} h2{font-size:26px;margin-bottom:10px} p{line-height:1.42} .menu,.cards{grid-template-columns:1fr} .top{flex-direction:column;gap:7px;margin-bottom:10px} .pill{padding:6px 9px;font-size:12px} .statsrow{justify-content:flex-start;gap:6px} .quote{padding:20px 16px;border-radius:22px} .quote::before{inset:8px;border-radius:17px} .quoteText{font-size:clamp(24px,7.2vw,30px);line-height:1.08} .hint{min-height:22px;margin:8px 0;font-size:14px} .hintButton{min-height:42px;padding:8px 12px} .choices{grid-template-columns:1fr;gap:8px;position:sticky;bottom:6px;z-index:3;margin-top:10px} .choice{min-height:54px;padding:9px 12px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;text-align:left} .choice span{font-size:12px} .dots{margin:9px 0}.dot{width:8px;height:8px}.reveal{position:fixed;left:10px;right:10px;bottom:10px;z-index:25;max-height:46svh;overflow:auto;padding:13px;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.48);background:linear-gradient(180deg,rgba(20,34,64,.98),rgba(8,17,34,.98))}.reveal .primary{width:100%;min-height:48px}.quitBtn{min-height:34px;padding:6px 10px}.btn:hover{transform:none} }
+  </style>
+</head>
+<body>
+  <main class="app"><div id="app" class="shell"></div></main>
+  <div id="toast" class="toast"></div>
+  <script>
+    // Constants
+    const LEVELS = {1:'Milk',2:'Bread',3:'Meat',4:'Discernment',5:'Berean'};
+    const LEVEL_REQUIREMENTS = {2:10,3:30,4:60,5:100};
+    const ANSWERS = ['AMEN','ALMOST','NOT'];
+    const STORAGE_KEY = 'amenOrNot.v2';
+    const QUESTION_BANK = [
+      {
+            "id": "q001",
+            "phrase": "The truth will set you free.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Words of Jesus",
+            "reference": "John 8:32",
+            "actual": "The truth will set you free.",
+            "explanation": "Jesus says this while teaching about abiding in his word.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q002",
+            "phrase": "Iron sharpens iron.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Proverbs",
+            "reference": "Proverbs 27:17",
+            "actual": "Iron sharpens iron, and one man sharpens another.",
+            "explanation": "This proverb pictures mutual sharpening and encouragement.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q003",
+            "phrase": "Love your neighbor as yourself.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Words of Jesus",
+            "reference": "Mark 12:31",
+            "actual": "You shall love your neighbor as yourself.",
+            "explanation": "Jesus names this as a great commandment.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q004",
+            "phrase": "A soft answer turns away wrath.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Proverbs",
+            "reference": "Proverbs 15:1",
+            "actual": "A soft answer turns away wrath.",
+            "explanation": "This is biblical wisdom about gentle speech.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q005",
+            "phrase": "The Lord is my shepherd.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Psalms",
+            "reference": "Psalm 23:1",
+            "actual": "The Lord is my shepherd; I shall not want.",
+            "explanation": "This is the opening line of Psalm 23.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q006",
+            "phrase": "Rejoice always.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Paul’s Letters",
+            "reference": "1 Thessalonians 5:16",
+            "actual": "Rejoice always.",
+            "explanation": "A short command in Paul’s closing instructions.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q007",
+            "phrase": "Pray without ceasing.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Paul’s Letters",
+            "reference": "1 Thessalonians 5:17",
+            "actual": "Pray without ceasing.",
+            "explanation": "A concise New Testament command to persistent prayer.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q008",
+            "phrase": "In the beginning God created the heavens and the earth.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Torah",
+            "reference": "Genesis 1:1",
+            "actual": "In the beginning, God created the heavens and the earth.",
+            "explanation": "The opening statement of Genesis.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q009",
+            "phrase": "God helps those who help themselves.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural proverb.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q010",
+            "phrase": "Cleanliness is next to godliness.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse, even though it sounds churchy.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q011",
+            "phrase": "Money is the root of all evil.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "1 Timothy 6:10",
+            "actual": "The love of money is a root of all kinds of evil.",
+            "explanation": "Scripture warns about the love of money, not money itself.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q012",
+            "phrase": "Pride comes before the fall.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 16:18",
+            "actual": "Pride goes before destruction, and a haughty spirit before a fall.",
+            "explanation": "The common phrase compresses the actual wording.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q013",
+            "phrase": "The wages of sin is death.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Paul’s Letters",
+            "reference": "Romans 6:23",
+            "actual": "For the wages of sin is death.",
+            "explanation": "A recognizable line from Romans.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q014",
+            "phrase": "The gift of God is eternal life.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Paul’s Letters",
+            "reference": "Romans 6:23",
+            "actual": "The free gift of God is eternal life in Christ Jesus our Lord.",
+            "explanation": "This completes the contrast in Romans 6:23.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q015",
+            "phrase": "Faith without works is dead.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "General Epistles",
+            "reference": "James 2:26",
+            "actual": "Faith apart from works is dead.",
+            "explanation": "James teaches that living faith bears fruit.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q016",
+            "phrase": "We walk by faith, not by sight.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Paul’s Letters",
+            "reference": "2 Corinthians 5:7",
+            "actual": "We walk by faith, not by sight.",
+            "explanation": "A direct line from Paul.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q017",
+            "phrase": "To obey is better than sacrifice.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "History",
+            "reference": "1 Samuel 15:22",
+            "actual": "To obey is better than sacrifice.",
+            "explanation": "Samuel rebukes Saul with this line.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q018",
+            "phrase": "The borrower is slave to the lender.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Proverbs",
+            "reference": "Proverbs 22:7",
+            "actual": "The borrower is the slave of the lender.",
+            "explanation": "A proverb about debt and dependence.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q019",
+            "phrase": "This too shall pass.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This wise-sounding phrase is 100% not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q020",
+            "phrase": "Hate the sin, love the sinner.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is a religious-sounding saying, but not biblical wording.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q021",
+            "phrase": "The lion shall lie down with the lamb.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 11:6",
+            "actual": "The wolf shall dwell with the lamb.",
+            "explanation": "The famous wording changes the animals in Isaiah.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q022",
+            "phrase": "God will never give you more than you can handle.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misleading Paraphrase",
+            "reference": "1 Corinthians 10:13",
+            "actual": "God provides a way of escape from temptation.",
+            "explanation": "The verse concerns temptation, not every hardship.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q023",
+            "phrase": "Spare the rod, spoil the child.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 13:24",
+            "actual": "Whoever spares the rod hates his son.",
+            "explanation": "The common saying is not the exact biblical wording.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q024",
+            "phrase": "The truth shall set you free.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "John 8:32",
+            "actual": "The truth will set you free.",
+            "explanation": "The familiar biblical wording uses “will.”",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q025",
+            "phrase": "The just shall live by faith.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Paul’s Letters",
+            "reference": "Romans 1:17",
+            "actual": "The righteous shall live by faith.",
+            "explanation": "A central biblical phrase echoing Habakkuk.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q026",
+            "phrase": "Be still, and know that I am God.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Psalms",
+            "reference": "Psalm 46:10",
+            "actual": "Be still, and know that I am God.",
+            "explanation": "A direct line from Psalm 46.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q027",
+            "phrase": "I can do all things through Christ who strengthens me.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Paul’s Letters",
+            "reference": "Philippians 4:13",
+            "actual": "I can do all things through him who strengthens me.",
+            "explanation": "Paul speaks of contentment through Christ.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q028",
+            "phrase": "Be sure your sin will find you out.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Torah",
+            "reference": "Numbers 32:23",
+            "actual": "Be sure your sin will find you out.",
+            "explanation": "A warning from Numbers.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q029",
+            "phrase": "The race is not to the swift.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Wisdom",
+            "reference": "Ecclesiastes 9:11",
+            "actual": "The race is not to the swift.",
+            "explanation": "Ecclesiastes reflects on life’s unpredictability.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q030",
+            "phrase": "Follow your heart.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is popular advice, but 100% not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q031",
+            "phrase": "Charity begins at home.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "A common proverb, not Scripture.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q032",
+            "phrase": "Moderation in all things.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This ancient maxim is 100% not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q033",
+            "phrase": "Do unto others as you would have them do unto you.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Paraphrase",
+            "reference": "Matthew 7:12",
+            "actual": "Whatever you wish that others would do to you, do also to them.",
+            "explanation": "The idea is biblical; the phrase is traditional wording.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q034",
+            "phrase": "Eye for an eye, tooth for a tooth.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Incomplete Quote",
+            "reference": "Exodus 21:24",
+            "actual": "Eye for eye, tooth for tooth.",
+            "explanation": "It reflects biblical law but is often quoted without context.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q035",
+            "phrase": "The love of money is the root of all evil.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "1 Timothy 6:10",
+            "actual": "The love of money is a root of all kinds of evil.",
+            "explanation": "It says “a root of all kinds,” not “the root of all.”",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q036",
+            "phrase": "Judge not.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Incomplete Quote",
+            "reference": "Matthew 7:1",
+            "actual": "Judge not, that you be not judged.",
+            "explanation": "The shortened form can miss the warning against hypocritical judgment.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q037",
+            "phrase": "The spirit is willing but the flesh is weak.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Words of Jesus",
+            "reference": "Matthew 26:41",
+            "actual": "The spirit indeed is willing, but the flesh is weak.",
+            "explanation": "Jesus says this in Gethsemane.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q038",
+            "phrase": "Many are called, but few are chosen.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Words of Jesus",
+            "reference": "Matthew 22:14",
+            "actual": "Many are called, but few are chosen.",
+            "explanation": "A saying of Jesus.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q039",
+            "phrase": "Deep calls unto deep.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Psalms",
+            "reference": "Psalm 42:7",
+            "actual": "Deep calls to deep.",
+            "explanation": "A poetic line from Psalm 42.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q040",
+            "phrase": "Can two walk together, except they be agreed?",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Prophets",
+            "reference": "Amos 3:3",
+            "actual": "Do two walk together, unless they have agreed to meet?",
+            "explanation": "A recognizable prophetic question.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q041",
+            "phrase": "The Lord works in mysterious ways.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "Religious-sounding, but 100% not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q042",
+            "phrase": "When God closes a door, He opens a window.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "A popular encouragement, not Scripture.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q043",
+            "phrase": "God moves in mysterious ways.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "From hymn tradition, not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q044",
+            "phrase": "All things work together for good.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Incomplete Quote",
+            "reference": "Romans 8:28",
+            "actual": "For those who love God all things work together for good.",
+            "explanation": "The common phrase often omits the qualifying context.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q045",
+            "phrase": "Where there is no vision, the people perish.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 29:18",
+            "actual": "Where there is no prophetic vision the people cast off restraint.",
+            "explanation": "Often used loosely; the verse concerns revelation and restraint.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q046",
+            "phrase": "Touch not the Lord’s anointed.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Incomplete Quote",
+            "reference": "Psalm 105:15",
+            "actual": "Touch not my anointed ones, do my prophets no harm.",
+            "explanation": "The phrase is biblical language but often pulled from context.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q047",
+            "phrase": "Before Abraham was, I am.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Words of Jesus",
+            "reference": "John 8:58",
+            "actual": "Before Abraham was, I am.",
+            "explanation": "A striking statement from Jesus in John.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q048",
+            "phrase": "Vanity of vanities, all is vanity.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Wisdom",
+            "reference": "Ecclesiastes 1:2",
+            "actual": "Vanity of vanities, says the Preacher, vanity of vanities! All is vanity.",
+            "explanation": "A famous opening theme in Ecclesiastes.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q049",
+            "phrase": "The heart is deceitful above all things.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Prophets",
+            "reference": "Jeremiah 17:9",
+            "actual": "The heart is deceitful above all things.",
+            "explanation": "Jeremiah warns about the human heart.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q050",
+            "phrase": "Out of the abundance of the heart the mouth speaks.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Words of Jesus",
+            "reference": "Matthew 12:34",
+            "actual": "Out of the abundance of the heart the mouth speaks.",
+            "explanation": "Jesus connects speech with the heart.",
+            "sourceType": "Scripture",
+            "hint": "This is recognizable biblical wording."
+      },
+      {
+            "id": "q051",
+            "phrase": "God needed another angel.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "A comforting phrase some use, but 100% not a Bible verse.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q052",
+            "phrase": "Heaven gained an angel.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "A sympathy phrase, not biblical wording.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q053",
+            "phrase": "The eye is the window to the soul.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "A common saying, not Scripture.",
+            "sourceType": "Not Scripture",
+            "hint": "This is a cultural saying, not a verse."
+      },
+      {
+            "id": "q054",
+            "phrase": "The patience of Job.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Traditional Phrase",
+            "reference": "James 5:11",
+            "actual": "You have heard of the steadfastness of Job.",
+            "explanation": "The idea is biblical, but the phrase is traditional wording.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q055",
+            "phrase": "God helps the weak who trust Him.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Paraphrase",
+            "reference": "2 Corinthians 12:9",
+            "actual": "My grace is sufficient for you, for my power is made perfect in weakness.",
+            "explanation": "The idea resembles Scripture but is not the wording.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q056",
+            "phrase": "God will not hear sinners.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Context Trap",
+            "reference": "John 9:31",
+            "actual": "We know that God does not listen to sinners.",
+            "explanation": "This is spoken by a healed man, not stated as a broad doctrinal proverb.",
+            "sourceType": "Misquote",
+            "hint": "The wording matters here."
+      },
+      {
+            "id": "q057",
+            "phrase": "Blessed are the peacemakers.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Words of Jesus",
+            "reference": "Matthew 5:9",
+            "actual": "Blessed are the peacemakers, for they shall be called sons of God.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q058",
+            "phrase": "The meek shall inherit the earth.",
+            "answer": "AMEN",
+            "level": 1,
+            "category": "Words of Jesus",
+            "reference": "Matthew 5:5",
+            "actual": "Blessed are the meek, for they shall inherit the earth.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q059",
+            "phrase": "Everything happens for a reason.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Romans 8:28",
+            "actual": "For those who love God all things work together for good.",
+            "explanation": "This overstates a biblical promise and often omits the verse’s context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q060",
+            "phrase": "God wants you happy above all else.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "1 Peter 1:15",
+            "actual": "As he who called you is holy, you also be holy.",
+            "explanation": "Scripture emphasizes holiness and joy, not happiness above all else.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q061",
+            "phrase": "Ask anything and God must give it.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "1 John 5:14",
+            "actual": "If we ask anything according to his will he hears us.",
+            "explanation": "The biblical promise is tied to God’s will.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q062",
+            "phrase": "No weapon formed against me can ever hurt me.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 54:17",
+            "actual": "No weapon that is fashioned against you shall succeed.",
+            "explanation": "The verse promises God’s vindication, not a painless life.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q063",
+            "phrase": "Train up a child and he will never stray.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 22:6",
+            "actual": "Train up a child in the way he should go; even when he is old he will not depart from it.",
+            "explanation": "The common wording turns wisdom into a mechanical guarantee.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q064",
+            "phrase": "Where two or three gather, God grants their request.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Matthew 18:20",
+            "actual": "Where two or three are gathered in my name, there am I among them.",
+            "explanation": "The verse concerns Christ’s presence in a church-discipline context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q065",
+            "phrase": "By his stripes every illness is already gone.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 53:5",
+            "actual": "With his wounds we are healed.",
+            "explanation": "The phrase applies healing language in a broader atonement context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q066",
+            "phrase": "Without a vision, people die.",
+            "answer": "ALMOST",
+            "level": 1,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 29:18",
+            "actual": "Where there is no prophetic vision the people cast off restraint.",
+            "explanation": "The verse is about revelation, not personal ambition.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q067",
+            "phrase": "Good things come to those who wait.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q068",
+            "phrase": "Be true to yourself.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q069",
+            "phrase": "A penny saved is a penny earned.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q070",
+            "phrase": "Do your best and God will do the rest.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q071",
+            "phrase": "God loves you just the way you are, so never change.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q072",
+            "phrase": "Once saved, always easy.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q073",
+            "phrase": "God won’t bless who you pretend to be.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q074",
+            "phrase": "The family that prays together stays together.",
+            "answer": "NOT",
+            "level": 1,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q075",
+            "phrase": "Man shall not live by bread alone.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Words of Jesus",
+            "reference": "Matthew 4:4",
+            "actual": "Man shall not live by bread alone, but by every word that comes from the mouth of God.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q076",
+            "phrase": "Seek first the kingdom of God.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Words of Jesus",
+            "reference": "Matthew 6:33",
+            "actual": "Seek first the kingdom of God and his righteousness.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q077",
+            "phrase": "Do not be anxious about tomorrow.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Words of Jesus",
+            "reference": "Matthew 6:34",
+            "actual": "Do not be anxious about tomorrow.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q078",
+            "phrase": "Let your light shine before others.",
+            "answer": "AMEN",
+            "level": 2,
+            "category": "Words of Jesus",
+            "reference": "Matthew 5:16",
+            "actual": "Let your light shine before others.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q079",
+            "phrase": "God promises health, wealth, and happiness.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "John 16:33",
+            "actual": "In the world you will have tribulation.",
+            "explanation": "Scripture promises Christ’s peace, not a trouble-free life.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q080",
+            "phrase": "The Bible says forgive and forget.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "Ephesians 4:32",
+            "actual": "Forgiving one another, as God in Christ forgave you.",
+            "explanation": "Scripture commands forgiveness, but that exact phrase is not a verse.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q081",
+            "phrase": "The safest place is the center of God’s will.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "Acts 14:22",
+            "actual": "Through many tribulations we must enter the kingdom of God.",
+            "explanation": "Obedience is good, but Scripture never promises earthly safety.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q082",
+            "phrase": "God won’t bless a mess.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "1 Corinthians 14:33",
+            "actual": "God is not a God of confusion but of peace.",
+            "explanation": "This is a rhyming saying, not biblical wording.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q083",
+            "phrase": "Prayer changes things.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "James 5:16",
+            "actual": "The prayer of a righteous person has great power.",
+            "explanation": "The idea is related, but the phrase is not a Bible verse.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q084",
+            "phrase": "Let go and let God.",
+            "answer": "ALMOST",
+            "level": 2,
+            "category": "Misquoted Scripture",
+            "reference": "Psalm 46:10",
+            "actual": "Be still, and know that I am God.",
+            "explanation": "This slogan is not the wording of Psalm 46.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q085",
+            "phrase": "Bloom where you are planted.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q086",
+            "phrase": "To thine own self be true.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q087",
+            "phrase": "God needed another flower in His garden.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q088",
+            "phrase": "Saints never complain.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q089",
+            "phrase": "The Lord will not close a chapter without writing a better one.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q090",
+            "phrase": "If it is meant to be, God will make it easy.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q091",
+            "phrase": "God grades on a curve.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q092",
+            "phrase": "Angels can do no more.",
+            "answer": "NOT",
+            "level": 2,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q093",
+            "phrase": "You are the salt of the earth.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Words of Jesus",
+            "reference": "Matthew 5:13",
+            "actual": "You are the salt of the earth.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q094",
+            "phrase": "Ask, and it will be given to you.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Words of Jesus",
+            "reference": "Matthew 7:7",
+            "actual": "Ask, and it will be given to you.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q095",
+            "phrase": "Knock, and it will be opened to you.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "Words of Jesus",
+            "reference": "Matthew 7:7",
+            "actual": "Knock, and it will be opened to you.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q096",
+            "phrase": "God is love.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "General Epistles",
+            "reference": "1 John 4:8",
+            "actual": "God is love.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q097",
+            "phrase": "Perfect love casts out fear.",
+            "answer": "AMEN",
+            "level": 3,
+            "category": "General Epistles",
+            "reference": "1 John 4:18",
+            "actual": "Perfect love casts out fear.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q098",
+            "phrase": "Name it and claim it.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "James 4:15",
+            "actual": "If the Lord wills, we will live and do this or that.",
+            "explanation": "Scripture teaches prayerful dependence, not control by slogan.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q099",
+            "phrase": "God helps those who pray harder.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "Luke 18:1",
+            "actual": "They ought always to pray and not lose heart.",
+            "explanation": "Scripture encourages persistent prayer, but not this phrase.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q100",
+            "phrase": "The Bible says God will meet you halfway.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "Luke 15:20",
+            "actual": "While he was still a long way off, his father saw him and felt compassion.",
+            "explanation": "This is a saying, not the biblical wording.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q101",
+            "phrase": "Christians should never judge anything.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "John 7:24",
+            "actual": "Do not judge by appearances, but judge with right judgment.",
+            "explanation": "Scripture warns against hypocritical judgment, not all discernment.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q102",
+            "phrase": "Blessed are the flexible, for they shall not be bent out of shape.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "Matthew 5:3",
+            "actual": "Blessed are the poor in spirit.",
+            "explanation": "It mimics the Beatitudes but is not Scripture.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q103",
+            "phrase": "God said it, I believe it, that settles it.",
+            "answer": "ALMOST",
+            "level": 3,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 40:8",
+            "actual": "The word of our God will stand forever.",
+            "explanation": "The sentiment may affirm Scripture, but it is not a verse.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q104",
+            "phrase": "Every cloud has a silver lining.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q105",
+            "phrase": "The road to hell is paved with good intentions.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q106",
+            "phrase": "Preach the gospel at all times; use words if necessary.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q107",
+            "phrase": "God helps those who hustle.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q108",
+            "phrase": "The Bible says time heals all wounds.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q109",
+            "phrase": "A clear conscience is a soft pillow.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q110",
+            "phrase": "God never wastes a hurt.",
+            "answer": "NOT",
+            "level": 3,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q111",
+            "phrase": "Children, obey your parents in the Lord.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Paul’s Letters",
+            "reference": "Ephesians 6:1",
+            "actual": "Children, obey your parents in the Lord.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q112",
+            "phrase": "Put on the whole armor of God.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Paul’s Letters",
+            "reference": "Ephesians 6:11",
+            "actual": "Put on the whole armor of God.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q113",
+            "phrase": "Give thanks in all circumstances.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Paul’s Letters",
+            "reference": "1 Thessalonians 5:18",
+            "actual": "Give thanks in all circumstances.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q114",
+            "phrase": "Test everything; hold fast what is good.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Paul’s Letters",
+            "reference": "1 Thessalonians 5:21",
+            "actual": "Test everything; hold fast what is good.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q115",
+            "phrase": "Trust in the Lord with all your heart.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Proverbs",
+            "reference": "Proverbs 3:5",
+            "actual": "Trust in the Lord with all your heart.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q116",
+            "phrase": "A joyful heart is good medicine.",
+            "answer": "AMEN",
+            "level": 4,
+            "category": "Proverbs",
+            "reference": "Proverbs 17:22",
+            "actual": "A joyful heart is good medicine.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q117",
+            "phrase": "The Lord helps those who help the poor.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 19:17",
+            "actual": "Whoever is generous to the poor lends to the Lord.",
+            "explanation": "Related to biblical teaching, but not the wording.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q118",
+            "phrase": "All sins are equal in God’s eyes.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "John 19:11",
+            "actual": "He who delivered me over to you has the greater sin.",
+            "explanation": "Scripture treats all sin seriously, but does not phrase it this way.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q119",
+            "phrase": "God will open the windows of heaven for every giver.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Malachi 3:10",
+            "actual": "I will open the windows of heaven for you and pour down for you a blessing.",
+            "explanation": "This is often quoted without its covenant setting.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q120",
+            "phrase": "The Lord gives and takes away, blessed be the name of the Lord.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Job 1:21",
+            "actual": "The Lord gave, and the Lord has taken away; blessed be the name of the Lord.",
+            "explanation": "Very close, but the common wording slightly reshapes Job’s line.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q121",
+            "phrase": "Guard your heart, for it will never mislead you.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 4:23",
+            "actual": "Keep your heart with all vigilance, for from it flow the springs of life.",
+            "explanation": "Proverbs says guard the heart; it does not say the heart is always reliable.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q122",
+            "phrase": "Everything happens for a reason.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "Romans 8:28",
+            "actual": "For those who love God all things work together for good.",
+            "explanation": "This overstates a biblical promise and often omits the verse’s context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q123",
+            "phrase": "God wants you happy above all else.",
+            "answer": "ALMOST",
+            "level": 4,
+            "category": "Misquoted Scripture",
+            "reference": "1 Peter 1:15",
+            "actual": "As he who called you is holy, you also be holy.",
+            "explanation": "Scripture emphasizes holiness and joy, not happiness above all else.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q124",
+            "phrase": "The Lord favors the bold.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q125",
+            "phrase": "If you can dream it, God can do it.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q126",
+            "phrase": "You are the author of your own destiny.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q127",
+            "phrase": "Heaven helps those who help themselves.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q128",
+            "phrase": "Faith makes all things easy.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q129",
+            "phrase": "The Lord wants winners, not whiners.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q130",
+            "phrase": "Sunday clears away the rust of the week.",
+            "answer": "NOT",
+            "level": 4,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q131",
+            "phrase": "The name of the Lord is a strong tower.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Proverbs",
+            "reference": "Proverbs 18:10",
+            "actual": "The name of the Lord is a strong tower.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q132",
+            "phrase": "A friend loves at all times.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Proverbs",
+            "reference": "Proverbs 17:17",
+            "actual": "A friend loves at all times.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q133",
+            "phrase": "There is a time for everything.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Wisdom",
+            "reference": "Ecclesiastes 3:1",
+            "actual": "For everything there is a season.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q134",
+            "phrase": "Two are better than one.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Wisdom",
+            "reference": "Ecclesiastes 4:9",
+            "actual": "Two are better than one.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q135",
+            "phrase": "Cast your burden on the Lord.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Psalms",
+            "reference": "Psalm 55:22",
+            "actual": "Cast your burden on the Lord.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q136",
+            "phrase": "Create in me a clean heart.",
+            "answer": "AMEN",
+            "level": 5,
+            "category": "Psalms",
+            "reference": "Psalm 51:10",
+            "actual": "Create in me a clean heart, O God.",
+            "explanation": "This is recognizable biblical wording with a clear reference.",
+            "sourceType": "Scripture",
+            "hint": "This is actual Scripture; listen for familiar wording."
+      },
+      {
+            "id": "q137",
+            "phrase": "Ask anything and God must give it.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "1 John 5:14",
+            "actual": "If we ask anything according to his will he hears us.",
+            "explanation": "The biblical promise is tied to God’s will.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q138",
+            "phrase": "No weapon formed against me can ever hurt me.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 54:17",
+            "actual": "No weapon that is fashioned against you shall succeed.",
+            "explanation": "The verse promises God’s vindication, not a painless life.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q139",
+            "phrase": "Train up a child and he will never stray.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 22:6",
+            "actual": "Train up a child in the way he should go; even when he is old he will not depart from it.",
+            "explanation": "The common wording turns wisdom into a mechanical guarantee.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q140",
+            "phrase": "Where two or three gather, God grants their request.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "Matthew 18:20",
+            "actual": "Where two or three are gathered in my name, there am I among them.",
+            "explanation": "The verse concerns Christ’s presence in a church-discipline context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q141",
+            "phrase": "By his stripes every illness is already gone.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "Isaiah 53:5",
+            "actual": "With his wounds we are healed.",
+            "explanation": "The phrase applies healing language in a broader atonement context.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q142",
+            "phrase": "Without a vision, people die.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "Proverbs 29:18",
+            "actual": "Where there is no prophetic vision the people cast off restraint.",
+            "explanation": "The verse is about revelation, not personal ambition.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q143",
+            "phrase": "God promises health, wealth, and happiness.",
+            "answer": "ALMOST",
+            "level": 5,
+            "category": "Misquoted Scripture",
+            "reference": "John 16:33",
+            "actual": "In the world you will have tribulation.",
+            "explanation": "Scripture promises Christ’s peace, not a trouble-free life.",
+            "sourceType": "Misquote",
+            "hint": "This is close to a biblical idea, but the wording or meaning shifts."
+      },
+      {
+            "id": "q144",
+            "phrase": "Good things come to those who wait.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q145",
+            "phrase": "Be true to yourself.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q146",
+            "phrase": "A penny saved is a penny earned.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Cultural Saying",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a cultural saying that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q147",
+            "phrase": "Do your best and God will do the rest.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q148",
+            "phrase": "God loves you just the way you are, so never change.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q149",
+            "phrase": "Once saved, always easy.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      },
+      {
+            "id": "q150",
+            "phrase": "God won’t bless who you pretend to be.",
+            "answer": "NOT",
+            "level": 5,
+            "category": "Popular Phrase",
+            "reference": "",
+            "actual": "",
+            "explanation": "This is 100% not a Bible verse; it is a popular phrase that can sound wise or religious.",
+            "sourceType": "Not Scripture",
+            "hint": "This sounds familiar, but it is not in the Bible."
+      }
+];
+
+    // State
+    const $ = (selector) => document.querySelector(selector);
+    const app = $('#app');
+    let stats = loadStats();
+    let game = null;
+
+    // LocalStorage helpers
+    function defaultStats() {
+      return { totalGamesPlayed:0,totalQuestionsSeen:0,totalCorrect:0,totalWrong:0,bestStreak:0,highestEndlessScore:0,dailyStreak:0,bestDailyStreak:0,lastDailyDate:'',perfectRounds:0,levelUnlocked:1,totalScore:0,answeredQuestionIds:[],missedQuestionIds:[],categoryStats:{},modeStats:{},dailyHistory:{},unlockedModes:{mixed:false,almost:false},recentQuestionIds:[],playerSeed:createPlayerSeed(),modeQueues:{} };
+    }
+    function loadStats() { try { return {...defaultStats(), ...(JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'))}; } catch { return defaultStats(); } }
+    function saveStats() { localStorage.setItem(STORAGE_KEY, JSON.stringify(stats)); }
+
+    // Seeded random / shuffle helpers
+    function createPlayerSeed() { if (window.crypto && crypto.getRandomValues) { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0]; } return Math.floor(Math.random()*2**32); }
+    function hashString(text) { let h = 2166136261; for (const ch of text) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; }
+    function seededRandom(seed) { let t = seed >>> 0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ (t >>> 15), 1 | t); r ^= r + Math.imul(r ^ (r >>> 7), 61 | r); return ((r ^ (r >>> 14)) >>> 0) / 4294967296; }; }
+    function shuffleArray(items, seed) { const rand = seed === undefined ? Math.random : seededRandom(seed); const out = [...items]; for (let i=out.length-1;i>0;i--) { const j = Math.floor(rand()*(i+1)); [out[i],out[j]]=[out[j],out[i]]; } return out; }
+    function todayKey() { return new Date().toLocaleDateString('en-CA'); }
+
+    // Question selection
+    function getEligibleQuestions(mode, level) {
+      let pool = QUESTION_BANK.filter(q => !level || q.level === level);
+      if (mode === 'mixed') pool = pool.filter(q => q.level <= stats.levelUnlocked);
+      if (mode === 'almost') pool = pool.filter(q => q.answer === 'ALMOST' && q.level <= stats.levelUnlocked);
+      return pool;
+    }
+    function queueKey(mode, level) { return `${mode}${level ? '-' + level : ''}`; }
+    function buildQueue(key, questions) {
+      const recent = new Set(stats.recentQuestionIds);
+      let pool = questions.filter(q => !recent.has(q.id));
+      if (pool.length < Math.min(12, questions.length)) pool = questions;
+      stats.modeQueues[key] = shuffleArray(pool.map(q => q.id), hashString(`${key}-${stats.playerSeed}-${Date.now()}`));
+      saveStats();
+    }
+    function getNextQuestion(mode, level, usedIds = new Set()) {
+      const eligible = getEligibleQuestions(mode, level).filter(q => !usedIds.has(q.id));
+      const key = queueKey(mode, level);
+      if (!stats.modeQueues[key] || stats.modeQueues[key].length < 4) buildQueue(key, eligible);
+      let id, guard = 0;
+      do { id = stats.modeQueues[key].shift(); guard++; } while (usedIds.has(id) && guard < 80);
+      saveStats();
+      return QUESTION_BANK.find(q => q.id === id) || shuffleArray(eligible)[0];
+    }
+    function getDailyQuestions() { return shuffleArray(QUESTION_BANK, hashString(todayKey())).slice(0, 10); }
+    function markQuestionSeen(id) { stats.recentQuestionIds = [id, ...stats.recentQuestionIds.filter(x => x !== id)].slice(0, 50); saveStats(); }
+
+    // Mode setup
+    function startGame(mode, level = 1, practice = false) {
+      const length = mode === 'mixed' ? 15 : mode === 'endless' ? Infinity : 10;
+      const used = new Set();
+      let questions = [];
+      if (mode === 'daily') questions = getDailyQuestions();
+      else {
+        const count = length === Infinity ? 1 : length;
+        for (let i=0;i<count;i++) { const pullLevel = mode === 'level' ? level : mode === 'endless' ? 1 : undefined; const q = getNextQuestion(mode, pullLevel, used); used.add(q.id); questions.push(q); }
+      }
+      game = { mode, level, practice, length, questions, index:0, current:null, score:0, correct:0, wrong:0, streak:0,bestStreak:0,misses:0,results:[],missed:[],hinted:false,answered:false };
+      renderQuestion();
+    }
+    function endlessLevel() { return Math.min(5, 1 + Math.floor(game.correct / 5)); }
+
+    // Rendering
+    function renderMenu() {
+      updateUnlocks(false);
+      app.innerHTML = `<section class="panel"><div class="brand"><div class="cross">✦</div><h1>Amen or Not</h1><p class="sub">Is it Scripture, almost Scripture, or not Scripture?</p></div><div class="grid menu"><button class="btn primary" onclick="startDaily()">Daily Discernment<small>Same 10 questions for everyone today</small></button><button class="btn" onclick="startGame('endless')">Endless Mode<small>Miss 3 and the run ends</small></button><button class="btn" onclick="renderLevelMenu()">Level Run<small>Choose Milk through Berean</small></button><button class="btn" ${stats.levelUnlocked < 3 ? 'disabled' : ''} onclick="startGame('mixed')">${stats.levelUnlocked < 3 ? '🔒 ' : ''}Mixed Challenge<small>Unlocks after Level 3</small></button><button class="btn" ${!canPlayAlmost() ? 'disabled' : ''} onclick="startGame('almost')">${!canPlayAlmost() ? '🔒 ' : ''}Almost Only<small>Hard mode for close misquotes</small></button><button class="btn" onclick="renderStats()">Stats<small>Your saved progress</small></button></div><p class="kbd">Keyboard: 1 Amen · 2 Almost · 3 Not · H Hint · Enter Next · Esc Menu</p></section>`;
+    }
+    function startDaily() { const done = stats.dailyHistory[todayKey()]; if (done) { toast('Daily already counted. Practice replay opened.'); startGame('daily',1,true); } else startGame('daily'); }
+    function renderLevelMenu() { app.innerHTML = `<section class="panel"><h2>Choose a Level</h2><div class="grid">${[1,2,3,4,5].map(l => `<button class="btn" ${stats.levelUnlocked < l ? 'disabled' : ''} onclick="startGame('level',${l})">${stats.levelUnlocked < l ? '🔒 ' : ''}Level ${l}: ${LEVELS[l]}<small>${l === 1 ? 'Available now' : 'Unlocks at ' + LEVEL_REQUIREMENTS[l] + ' total correct answers'}</small></button>`).join('')}</div><br><button class="btn" onclick="renderMenu()">Back</button></section>`; }
+    function modeName() { return {daily:'Daily Discernment',endless:'Endless Mode',level:`Level ${game.level}: ${LEVELS[game.level]}`,mixed:'Mixed Challenge',almost:'Almost Only'}[game.mode]; }
+    function quitToMenu() { if (!game || game.answered || confirm('Quit this round and return to the main screen?')) { game = null; renderMenu(); } }
+    function renderQuestion() {
+      if (game.mode === 'endless' && !game.questions[game.index]) { const q = getNextQuestion('endless', endlessLevel(), new Set(game.results.map(r => r.id))); game.questions[game.index] = q; }
+      const q = game.questions[game.index]; game.current = q; game.answered = false; game.hinted = false; markQuestionSeen(q.id);
+      const progress = game.length === Infinity ? `Correct ${game.correct}` : `${game.index + 1}/${game.length}`;
+      app.innerHTML = `<section class="panel"><div class="top"><span class="pill">${modeName()} · ${progress} · ${LEVELS[q.level]}</span><div class="statsrow"><span class="pill">Score ${game.score.toLocaleString()}</span><span class="pill">Streak ${game.streak}</span>${game.mode === 'endless' ? `<span class="pill">${'🕯️'.repeat(3-game.misses)}${'·'.repeat(game.misses)}</span>` : ''}<button class="btn quitBtn" onclick="quitToMenu()">Quit</button></div></div><div class="quote"><div class="quoteText">“${escapeHtml(q.phrase)}”</div></div><div class="hint" id="hint"></div><button class="btn hintButton" onclick="useHint()">Hint <small>H · removes no-hint bonus</small></button><div class="choices">${ANSWERS.map((a,i) => `<button class="btn choice ${a.toLowerCase()}" data-answer="${a}" onclick="answerQuestion('${a}')">${i+1}. ${a}<span>${a === 'AMEN' ? 'It’s Scripture' : a === 'ALMOST' ? 'Close, but off' : 'Not Scripture'}</span></button>`).join('')}</div>${progressDots()}<div id="reveal"></div></section>`;
+    }
+    function progressDots() { if (game.length === Infinity) return ''; return `<div class="dots">${Array.from({length:game.length},(_,i)=>`<i class="dot ${game.results[i]?.correct ? (game.results[i].hinted ? 'hinted' : 'good') : game.results[i] ? 'bad' : ''}"></i>`).join('')}</div>`; }
+
+    // Answer handling / scoring
+    function useHint() { if (!game || game.answered) return; game.hinted = true; $('#hint').textContent = '✦ ' + game.current.hint; }
+    function answerQuestion(choice) {
+      if (!game || game.answered) return;
+      game.answered = true;
+      const q = game.current;
+      const correct = choice === q.answer;
+      let gained = 0;
+      if (correct) { game.streak++; game.correct++; gained = 100 + ((q.level - 1) * 25) + (game.streak * 10) + (game.hinted ? 0 : 25); game.score += gained; game.bestStreak = Math.max(game.bestStreak, game.streak); if (game.streak % 5 === 0) toast(`Streak x${game.streak}`); }
+      else { game.streak = 0; game.wrong++; game.misses++; game.missed.push({q, chosen:choice}); }
+      game.results.push({id:q.id, correct, hinted:game.hinted, chosen:choice});
+      document.querySelectorAll('.choice').forEach(btn => { btn.disabled = true; if (btn.dataset.answer === q.answer) btn.classList.add('correct'); if (btn.dataset.answer === choice && !correct) btn.classList.add('wrong'); });
+      $('#reveal').innerHTML = `<div class="reveal"><h3>${correct ? 'Correct' : 'Not quite'} <span class="answerTag">${q.answer}</span></h3>${q.reference ? `<p><b>Verse:</b> ${q.reference}</p>` : '<p><b>100% not a Bible verse</b></p>'}${q.actual ? `<div class="actual"><b>Verse wording:</b><br>“${escapeHtml(q.actual)}”</div>` : ''}<p>${escapeHtml(q.explanation)}</p><p><b>Source type:</b> ${q.sourceType} · <b>+${gained}</b></p><button class="btn primary" onclick="nextQuestion()">Next</button></div>`;
+      scorePop(`+${gained}`);
+      const nextButton = document.querySelector('#reveal .primary');
+      if (nextButton && nextButton.focus) nextButton.focus({preventScroll:true});
+    }
+    function nextQuestion() {
+      game.index++; game.hinted = false; game.answered = false;
+      if (game.mode === 'endless') { if (game.misses >= 3) return endGame(); game.questions[game.index] = getNextQuestion('endless', endlessLevel(), new Set(game.results.map(r => r.id))); return renderQuestion(); }
+      if (game.index >= game.length) return endGame();
+      renderQuestion();
+    }
+
+    // Progression / unlocks / stats
+    function endGame() {
+      const shouldCount = !(game.mode === 'daily' && game.practice);
+      if (shouldCount) {
+        stats.totalGamesPlayed++; stats.totalQuestionsSeen += game.results.length; stats.totalCorrect += game.correct; stats.totalWrong += game.wrong; stats.bestStreak = Math.max(stats.bestStreak, game.bestStreak); stats.totalScore += game.score; if (game.wrong === 0) stats.perfectRounds++;
+        if (game.mode === 'endless') stats.highestEndlessScore = Math.max(stats.highestEndlessScore, game.score);
+        const modeStats = stats.modeStats[game.mode] || (stats.modeStats[game.mode] = {played:0,bestScore:0}); modeStats.played++; modeStats.bestScore = Math.max(modeStats.bestScore, game.score);
+        for (const r of game.results) { const q = QUESTION_BANK.find(x => x.id === r.id); stats.answeredQuestionIds.push(q.id); if (!r.correct) stats.missedQuestionIds.push(q.id); const cs = stats.categoryStats[q.category] || (stats.categoryStats[q.category] = {seen:0,correct:0}); cs.seen++; if (r.correct) cs.correct++; }
+        if (game.mode === 'daily') { const d = todayKey(); const y = new Date(); y.setDate(y.getDate()-1); const yd = y.toLocaleDateString('en-CA'); stats.dailyHistory[d] = {score:game.score,correct:game.correct,rank:getRank()}; stats.dailyStreak = stats.lastDailyDate === yd ? stats.dailyStreak + 1 : 1; stats.lastDailyDate = d; stats.bestDailyStreak = Math.max(stats.bestDailyStreak, stats.dailyStreak); }
+      }
+      updateUnlocks(true); saveStats(); renderEndScreen();
+    }
+    function updateUnlocks(showToast) { const old = stats.levelUnlocked; while (stats.levelUnlocked < 5 && stats.totalCorrect >= LEVEL_REQUIREMENTS[stats.levelUnlocked + 1]) stats.levelUnlocked++; const almostSeen = stats.answeredQuestionIds.map(id => QUESTION_BANK.find(q => q.id === id)).filter(q => q && q.answer === 'ALMOST').length; stats.unlockedModes.mixed = stats.levelUnlocked >= 3; stats.unlockedModes.almost = stats.levelUnlocked >= 3 || almostSeen >= 25; if (showToast && stats.levelUnlocked > old) toast('Level unlocked: ' + LEVELS[stats.levelUnlocked]); }
+    function canPlayAlmost() { return stats.unlockedModes.almost || stats.levelUnlocked >= 3; }
+    function getRank() { const accuracy = game.correct / Math.max(1, game.results.length); const index = Math.min(7, Math.floor(accuracy * 5) + Math.floor(game.score / 1400)); return ['Seeker','Student','Steady','Watchful','Rooted','Discernment','Berean','Overcomer'][index]; }
+    function renderEndScreen() { const accuracy = Math.round((game.correct / game.results.length) * 100); const rank = getRank(); if (game.wrong === 0) sparkle(); app.innerHTML = `<section class="panel"><h2>${modeName()} Complete</h2><div class="cards"><div class="card"><small>Score</small><h2>${game.score.toLocaleString()}</h2></div><div class="card"><small>Rank</small><h2>${rank}</h2></div><div class="card"><small>Correct</small><h2>${game.correct}/${game.results.length}</h2></div><div class="card"><small>Accuracy</small><h2>${accuracy}%</h2></div><div class="card"><small>Best Streak</small><h2>${game.bestStreak}</h2></div><div class="card"><small>Missed</small><h2>${game.wrong}</h2></div></div><p>“You checked what was said against the Word.”</p><div class="grid"><button class="btn primary" onclick="shareResult()">Share Result</button>${game.missed.length ? '<button class="btn" onclick="renderReview()">Review Missed</button>' : ''}<button class="btn" onclick="startGame(game.mode, game.level, true)">Play Again</button><button class="btn" onclick="renderMenu()">Back to Menu</button></div></section>`; }
+    function renderStats() { const total = Math.max(1, stats.totalQuestionsSeen); const accuracy = Math.round(stats.totalCorrect / total * 100); const cats = Object.entries(stats.categoryStats).sort((a,b)=>(b[1].correct/b[1].seen)-(a[1].correct/a[1].seen)); app.innerHTML = `<section class="panel"><h2>Stats</h2><div class="cards">${[['Games played',stats.totalGamesPlayed],['Total questions',stats.totalQuestionsSeen],['Accuracy',accuracy+'%'],['Best streak',stats.bestStreak],['Daily streak',stats.dailyStreak],['Best daily streak',stats.bestDailyStreak],['Highest endless',stats.highestEndlessScore.toLocaleString()],['Perfect rounds',stats.perfectRounds],['Unlocked level',LEVELS[stats.levelUnlocked]],['Total score',stats.totalScore.toLocaleString()]].map(([k,v])=>`<div class="card"><small>${k}</small><h2>${v}</h2></div>`).join('')}</div><p><b>Strongest category:</b> ${cats[0]?.[0] || '—'}<br><b>Weakest category:</b> ${cats.at(-1)?.[0] || '—'}</p><div class="bar"><i style="width:${accuracy}%"></i></div><br><button class="btn" onclick="renderMenu()">Back</button></section>`; }
+
+    // Share / review
+    function shareResult() { const grid = game.results.map(r => r.correct ? (r.hinted ? '🟨' : '🟩') : '🟥').join(''); const text = game.mode === 'endless' ? `Amen or Not — Endless
+Score: ${game.score.toLocaleString()}
+Correct: ${game.correct}
+Best Streak: ${game.bestStreak}
+Rank: ${getRank()}` : `Amen or Not ${game.mode === 'daily' ? '#' + (hashString(todayKey()) % 1000) : '— ' + modeName()}
+Score: ${game.correct}/${game.results.length}
+Rank: ${getRank()}
+Streak: ${game.bestStreak}
+${grid}
+
+🟩 correct · 🟥 wrong · 🟨 correct with hint`; if (navigator.clipboard) navigator.clipboard.writeText(text).then(()=>toast('Result copied')).catch(()=>copyFallback(text)); else copyFallback(text); }
+    function copyFallback(text) { prompt('Copy your result:', text); toast('Result ready'); }
+    function renderReview() { app.innerHTML = `<section class="panel"><h2>Review Missed</h2>${game.missed.map(m => `<div class="reviewItem"><h3>“${escapeHtml(m.q.phrase)}”</h3><p>Your answer: <b>${m.chosen}</b> · Correct answer: <b>${m.q.answer}</b></p>${m.q.reference ? `<p><b>Verse:</b> ${m.q.reference}</p>` : '<p><b>100% not a Bible verse</b></p>'}${m.q.actual ? `<div class="actual"><b>Verse wording:</b><br>“${escapeHtml(m.q.actual)}”</div>` : ''}<p>${escapeHtml(m.q.explanation)}</p></div>`).join('')}<button class="btn" onclick="renderEndScreen()">Back</button></section>`; }
+
+    // UI helpers / toasts / animations
+    function escapeHtml(text) { return String(text).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch])); }
+    function toast(message) { const el = $('#toast'); el.textContent = message; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'), 1800); }
+    function scorePop(message) { const el = document.createElement('div'); el.className = 'toast show'; el.textContent = message; document.body.appendChild(el); setTimeout(()=>el.remove(), 760); }
+    function sparkle() { const el = document.createElement('div'); el.className = 'sparkle'; document.body.appendChild(el); setTimeout(()=>el.remove(), 900); }
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') return renderMenu(); if (!game) return; if (['1','2','3'].includes(event.key)) answerQuestion(ANSWERS[Number(event.key)-1]); if (event.key.toLowerCase() === 'h') useHint(); if (event.key === 'Enter' && game.answered) nextQuestion(); });
+    renderMenu();
+  </script>
+</body>
+</html>
